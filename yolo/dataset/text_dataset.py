@@ -85,11 +85,12 @@ class TextDataSet(DataSet):
     h = image.shape[0]
     w = image.shape[1]
 
+    #voc数据的图片大小不一致,因此需要resize,用这个比例可以计算回去
     width_rate = self.width * 1.0 / w 
     height_rate = self.height * 1.0 / h 
 
     image = cv2.resize(image, (self.height, self.width))
-
+    #label为５维, 分别为centerx, centery, w, h, class_label
     labels = [[0, 0, 0, 0, 0]] * self.max_objects
     i = 1
     object_num = 0
